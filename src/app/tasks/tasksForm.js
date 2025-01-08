@@ -30,9 +30,7 @@ export default function TasksForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({title})
       });
-      const newTask = await response.json();
-      setTasks([...tasks, newTask]);
-      setTitle("");
+      getTasks()
     } 
     catch (error) {
       console.error('Error al agregar una tarea:', error);
@@ -46,8 +44,7 @@ export default function TasksForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({id})
       });
-      const updatedTask = await response.json();
-      setTasks(tasks.map(task => task.id === id ? updatedTask : task));
+      getTasks()
     } 
     catch (error) {
       console.error('Error al actualizar una tarea:', error);
@@ -61,8 +58,7 @@ export default function TasksForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({id})
       });
-      const listaSinTaskBorrada = await response.json();
-      setTasks(listaSinTaskBorrada);
+      getTasks()
     } 
     catch (error) {
       console.error('Error al actualizar una tarea:', error);
